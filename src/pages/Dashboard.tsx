@@ -13,6 +13,7 @@ import { ComicData } from "@/lib/interfaces";
 import Shimmer from "@/components/Shimmer";
 import InstructionDialog from "@/components/InstructionDialog";
 import Spinner from "@/components/ui/spinner";
+import { BookText, PlusSquare } from "lucide-react";
 const SheetForm = lazy(() => import("@/components/SheetForm"));
 
 function DashBoard() {
@@ -22,36 +23,51 @@ function DashBoard() {
   const [loading, setLoading] = useState<boolean>(false);
 
   return (
-    <div className="flex flex-col mt-4 ">
+    <div className="flex flex-col mt-3">
       <div className="flex flex-row justify-between w-full px-[20px] flex-wrap">
-        <h3 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
-          Comic Creator
-        </h3>
+        <div className="flex flex-row  justify-center">
+          <img
+            src="https://dashtoon.com/static/media/dashtoon-logo.a8078db575978f3185c8.png"
+            className="flex h-8 w-8 mr-2"
+          />
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
+            Comic Creator
+          </h2>
+        </div>
         <div className="flex gap-2">
           <Button
             variant="secondary"
-            className="rounded-full px-6"
+            size="sm"
             onClick={() => {
               setDialog(true);
             }}
           >
-            <span className="text-[14px]">Instructions</span>
+            <BookText className="sm:mr-2 h-5 w-5 sm:h-4 sm:w-4" />
+            <span className="hidden sm:inline">Instructions</span>
           </Button>
           <InstructionDialog dialog={dialog} setDialog={setDialog} />
           <Button
             variant="default"
-            className="rounded-full px-6"
+            size="sm"
             onClick={() => {
               setIsOpen(true);
             }}
             disabled={loading}
           >
-            <span className="text-[14px]">Add a comic</span>
+            <PlusSquare className="sm:mr-2 h-5 w-5 sm:h-4 sm:w-4" />
+            <span className="hidden sm:inline">Add a comic</span>
           </Button>
         </div>
       </div>
-      <Separator className="my-[8px]" orientation="horizontal" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 mx-4 mt-8">
+      <Separator className="my-3" orientation="horizontal" />
+      {!loading && !comic && (
+        <div className="flex justify-center mt-[40vh]">
+          <p className="flex justify-center w-full text-md text-muted-foreground">
+            Click on Add a comic to get started.
+          </p>
+        </div>
+      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 mx-4 mt-6">
         {comic &&
           comic.cardArray.map((card) => (
             <Card

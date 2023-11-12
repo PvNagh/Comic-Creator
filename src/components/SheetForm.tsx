@@ -52,7 +52,6 @@ const SheetForm: React.FC<SheetFormProps> = ({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     form.reset({
       prompt: "",
       text: "",
@@ -66,7 +65,6 @@ const SheetForm: React.FC<SheetFormProps> = ({
     setLoading(true);
     query({ inputs: values.prompt })
       .then((response) => {
-        console.log(response);
         let nano = nanoid();
         if (response) {
           const imageUrl = URL.createObjectURL(response);
