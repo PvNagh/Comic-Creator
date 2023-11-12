@@ -25,7 +25,7 @@ function DashBoard() {
     <div className="flex flex-col mt-4 ">
       <div className="flex flex-row justify-between w-full px-[20px] flex-wrap">
         <h3 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
-          My comic strip
+          Comic Creator
         </h3>
         <div className="flex gap-2">
           <Button
@@ -79,7 +79,7 @@ function DashBoard() {
             </Card>
           ))}
         {loading && <Shimmer />}
-        <Suspense fallback={<Spinner/>}>
+        <Suspense fallback={<Spinner />}>
           <SheetForm
             setLoading={setLoading}
             setComic={setComic}
