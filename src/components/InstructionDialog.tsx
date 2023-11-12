@@ -26,9 +26,11 @@ const InstructionDialog: React.FC<InfoDialogProps> = ({
           </DialogDescription>
         </DialogHeader>
         <div>
-          <ul className="my-4 ml-6 list-disc [&>li]:mt-1">
+          <ul className="my-4 ml-6 list-disc text-sm [&>li]:mt-1">
             {comicSteps.map((step, index) => (
-              <li key={index + 1}>{step}</li>
+              <li key={index + 1}>
+                {step}
+              </li>
             ))}
           </ul>
         </div>
